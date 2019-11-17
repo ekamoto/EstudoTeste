@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shindi.LeilaoOnline.Core", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{B2240246-FCA9-48F1-883C-15E83E6F1E3F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shindi.LeilaoOnline.ConsoleApp", "Shindi.LeilaoOnline.ConsoleApp\Shindi.LeilaoOnline.ConsoleApp.csproj", "{B5D57813-3869-4B59-93C0-16B694DD4741}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shindi.LeilaoOnline.ConsoleApp", "Shindi.LeilaoOnline.ConsoleApp\Shindi.LeilaoOnline.ConsoleApp.csproj", "{B5D57813-3869-4B59-93C0-16B694DD4741}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shindi.LeilaoOnline.Tests", "Shindi.LeilaoOnline.Tests\Shindi.LeilaoOnline.Tests.csproj", "{DA4C1929-B0D6-41DA-9F1F-9E7097B1935D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,6 +27,10 @@ Global
 		{B5D57813-3869-4B59-93C0-16B694DD4741}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B5D57813-3869-4B59-93C0-16B694DD4741}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B5D57813-3869-4B59-93C0-16B694DD4741}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DA4C1929-B0D6-41DA-9F1F-9E7097B1935D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA4C1929-B0D6-41DA-9F1F-9E7097B1935D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DA4C1929-B0D6-41DA-9F1F-9E7097B1935D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DA4C1929-B0D6-41DA-9F1F-9E7097B1935D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -32,6 +38,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{C376A863-AF89-4CE2-98D8-3B6AD2CB6BAE} = {6C65BE6C-0393-4DA8-97AE-A8A5352FEDC0}
 		{B5D57813-3869-4B59-93C0-16B694DD4741} = {B2240246-FCA9-48F1-883C-15E83E6F1E3F}
+		{DA4C1929-B0D6-41DA-9F1F-9E7097B1935D} = {B2240246-FCA9-48F1-883C-15E83E6F1E3F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4A7B77B3-E224-4724-8C06-10D9F96208C9}
