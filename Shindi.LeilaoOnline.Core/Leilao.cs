@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Shindi.LeilaoOnline.Core
@@ -24,12 +25,14 @@ namespace Shindi.LeilaoOnline.Core
 
         public void IniciaPregao()
         {
-
+            Console.WriteLine("Leilão Iniciado");
         }
 
         public void TerminaPregao()
         {
-            Ganhador = Lances.OrderBy(t => t.Valor).Last();
+            Ganhador = Lances
+                .DefaultIfEmpty(new Lance(null, 0))
+                .OrderBy(t => t.Valor).LastOrDefault();
         }
     }
 }
