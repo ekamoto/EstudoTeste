@@ -70,7 +70,7 @@ namespace Shindi.LeilaoOnline.Tests
             var interassado1 = new Interessada("Leandro", leilao);
             var interassado2 = new Interessada("Priscila", leilao);
             var interassado3 = new Interessada("Marina", leilao);
-
+            leilao.IniciaPregao();
             leilao.TerminaPregao();
             var valorEsperado = 0;
 

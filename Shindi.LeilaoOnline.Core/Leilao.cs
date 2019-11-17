@@ -4,13 +4,6 @@ using System.Linq;
 
 namespace Shindi.LeilaoOnline.Core
 {
-    public enum EstadoLeilao
-    { 
-        LeilaoEmEspera,
-        LeilaoEmAndamento,
-        LeilaoFinalizado
-    };
-
     public class Leilao
     {
         
@@ -20,24 +13,24 @@ namespace Shindi.LeilaoOnline.Core
 
         public Lance Ganhador { get; private set; }
 
-        public EstadoLeilao Estado { get; set; }
+        public IEstado Estado { get; set; }
 
         public Leilao(string peca)
         {
-            Estado = EstadoLeilao.LeilaoEmEspera;
+            Estado = new EstadoEmEspera();
             Peca = peca;
             _lances = new List<Lance>();
         }
 
         public void RecebeLance(Interessada cliente, double valor)
         {
-            if(Estado.Equals(EstadoLeilao.LeilaoEmAndamento))
+            if(Estado.GetType() == new EstadoEmAndamento().GetType())
                 _lances.Add(new Lance(cliente, valor));
         }
 
         public void IniciaPregao()
         {
-            Estado = EstadoLeilao.LeilaoEmAndamento;
+            Estado.IniciarLeilao(this);
             Console.WriteLine("Leilão Iniciado");
         }
 
@@ -46,7 +39,8 @@ namespace Shindi.LeilaoOnline.Core
             Ganhador = Lances
                 .DefaultIfEmpty(new Lance(null, 0))
                 .OrderBy(t => t.Valor).LastOrDefault();
-            Estado = EstadoLeilao.LeilaoFinalizado;
+
+            Estado.FinalizarLeilao(this);
         }
     }
 }
