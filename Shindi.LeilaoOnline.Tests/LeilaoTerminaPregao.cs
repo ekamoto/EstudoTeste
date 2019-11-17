@@ -6,13 +6,13 @@ using Xunit;
 
 namespace Shindi.LeilaoOnline.Tests
 {
-    public class LeilaoTeste
+    public class LeilaoTerminaPregao
     {
         [Theory]
         [InlineData(1000, new double[] { 800, 900, 1000 })]
         [InlineData(1000, new double[] { 800, 1000, 900 })]
         [InlineData(350, new double[] { 350 })]
-        public void LeilaoComVariosLances(double valor, double[] ofertas)
+        public void RetornaValorDadoLeilaoComPeloMenosUmLance(double valor, double[] ofertas)
         {
             // give when then
             // Arrange Act Assert
@@ -22,6 +22,8 @@ namespace Shindi.LeilaoOnline.Tests
             var leilao = new Leilao("Jogos");
             var fulano = new Interessada("Fulano", leilao);
             var maria = new Interessada("Maria", leilao);
+
+            leilao.IniciaPregao();
 
             foreach (var oferta in ofertas)
             {
@@ -62,7 +64,7 @@ namespace Shindi.LeilaoOnline.Tests
         }
 
         [Fact]
-        public void LeilaoSemLances()
+        public void RetornaZeroDadoLeilaoSemLances()
         {
             var leilao = new Leilao("Bicicleta");
             var interassado1 = new Interessada("Leandro", leilao);
