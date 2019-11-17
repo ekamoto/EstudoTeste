@@ -8,8 +8,11 @@ namespace Shindi.LeilaoOnline.Tests
 {
     public class LeilaoTeste
     {
-        [Fact]
-        public void LeilaoComVariosLances()
+        [Theory]
+        [InlineData(1000, new double[] { 800, 900, 1000 })]
+        [InlineData(1000, new double[] { 800, 1000, 900 })]
+        [InlineData(350, new double[] { 350 })]
+        public void LeilaoComVariosLances(double valor, double[] ofertas)
         {
             // give when then
             // Arrange Act Assert
@@ -20,11 +23,10 @@ namespace Shindi.LeilaoOnline.Tests
             var fulano = new Interessada("Fulano", leilao);
             var maria = new Interessada("Maria", leilao);
 
-            leilao.RecebeLance(fulano, 800);
-            leilao.RecebeLance(maria, 900);
-            leilao.RecebeLance(fulano, 1000);
-
-            leilao.RecebeLance(maria, 990);
+            foreach (var oferta in ofertas)
+            {
+                leilao.RecebeLance(fulano, oferta);
+            }
 
             // Act - método sob teste
             // Quando o leilão/pregão termina
@@ -32,27 +34,7 @@ namespace Shindi.LeilaoOnline.Tests
 
             // Assert
             // Então o valor esperado é o maior valor, no caso é 100
-            var valorEsperado = 1000;
-            var valorObtido = leilao.Ganhador.Valor;
-
-            Assert.Equal(valorEsperado, valorObtido);
-        }
-
-        [Fact]
-        public void LeilaoComUmLance()
-        {
-            // Arranje - cenário de entrada
-            var leilao = new Leilao("Jogos");
-            var fulano = new Interessada("Fulano", leilao);
-            var maria = new Interessada("Maria", leilao);
-
-            leilao.RecebeLance(fulano, 800);
-
-            // Act - método sob teste
-            leilao.TerminaPregao();
-
-            //Assert
-            var valorEsperado = 800;
+            var valorEsperado = valor;
             var valorObtido = leilao.Ganhador.Valor;
 
             Assert.Equal(valorEsperado, valorObtido);
