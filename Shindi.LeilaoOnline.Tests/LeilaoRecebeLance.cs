@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace Shindi.LeilaoOnline.Tests
 {
-    public class LeilaoRecebeOferta
+    public class LeilaoRecebeLance
     {
         [Theory]
         [InlineData(2, new double[] { 100, 200})]
