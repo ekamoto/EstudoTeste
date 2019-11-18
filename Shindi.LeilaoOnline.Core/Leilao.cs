@@ -14,6 +14,7 @@ namespace Shindi.LeilaoOnline.Core
         public Lance Ganhador { get; private set; }
 
         public IEstado Estado { get; set; }
+        private Interessada _ultimoLanceIntessado { get; set; }
 
         public Leilao(string peca)
         {
@@ -24,8 +25,14 @@ namespace Shindi.LeilaoOnline.Core
 
         public void RecebeLance(Interessada cliente, double valor)
         {
-            if(Estado.GetType() == new EstadoEmAndamento().GetType())
-                _lances.Add(new Lance(cliente, valor));
+            if (_ultimoLanceIntessado != cliente)
+            {
+                if (Estado.GetType() == new EstadoEmAndamento().GetType())
+                {
+                    _lances.Add(new Lance(cliente, valor));
+                    _ultimoLanceIntessado = cliente;
+                }
+            }
         }
 
         public void IniciaPregao()

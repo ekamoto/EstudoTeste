@@ -9,8 +9,8 @@ namespace Shindi.LeilaoOnline.Tests
     public class LeilaoTerminaPregao
     {
         [Theory]
-        [InlineData(1000, new double[] { 800, 900, 1000 })]
-        [InlineData(1000, new double[] { 800, 1000, 900 })]
+        [InlineData(800, new double[] { 800, 900, 1000 })]
+        [InlineData(800, new double[] { 800, 1000, 900 })]
         [InlineData(350, new double[] { 350 })]
         public void RetornaValorDadoLeilaoComPeloMenosUmLance(double valor, double[] ofertas)
         {
