@@ -1,4 +1,6 @@
-﻿namespace Shindi.LeilaoOnline.Core
+﻿using System;
+
+namespace Shindi.LeilaoOnline.Core
 {
     public class Lance
     {
@@ -8,6 +10,12 @@
         public Lance(Interessada cliente, double valor)
         {
             Cliente = cliente;
+
+            if (valor < 0)
+            {
+                throw new ArgumentException("Lance inválido: valor deve ser maior que zero.");
+            }
+            
             Valor = valor;
         }
     }

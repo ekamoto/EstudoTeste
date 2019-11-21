@@ -43,6 +43,11 @@ namespace Shindi.LeilaoOnline.Core
 
         public void TerminaPregao()
         {
+            if (Estado.GetType() == new EstadoEmEspera().GetType())
+            {
+                throw new InvalidOperationException("Não é possível finalizar um pregão que não foi iniciado");
+            }
+
             Ganhador = Lances
                 .DefaultIfEmpty(new Lance(null, 0))
                 .OrderBy(t => t.Valor).LastOrDefault();

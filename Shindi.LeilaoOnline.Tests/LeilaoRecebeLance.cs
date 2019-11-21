@@ -6,6 +6,23 @@ namespace Shindi.LeilaoOnline.Tests
 {
     public class LeilaoRecebeLance
     {
+        [Fact]
+        public void LancaInvalidOperationExceptionDadopregaoNaoIniciado()
+        {
+            //Arrange - cenário
+            var leilao = new Leilao("Van Gogh");
+
+            //Assert
+            var excecaoObtida = Assert.Throws<System.InvalidOperationException>(
+                //Act - método sob teste
+                () => leilao.TerminaPregao()
+            );
+
+            var mensagemEsperada = "Não é possível finalizar um pregão que não foi iniciado";
+
+            Assert.Equal(mensagemEsperada, excecaoObtida.Message);
+        }
+
         [Theory]
         [InlineData(1, new double[] { 100, 200})]
         [InlineData(1, new double[] { 100, 200, 635, 985 })]
