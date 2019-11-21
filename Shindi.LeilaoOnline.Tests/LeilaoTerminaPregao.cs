@@ -8,6 +8,44 @@ namespace Shindi.LeilaoOnline.Tests
 {
     public class LeilaoTerminaPregao
     {
+
+        [Theory]
+        [InlineData(1200, 1250, new double[] { 800, 1150, 1400, 1250 })]
+        public void RetornaValorMaisProximoDoValorEstimadoDadoModalidade(
+            double valorDestino,
+            double valorEsperado,
+            double[] ofertas)
+        {
+            // valorDestino - é o valor esperado para aquele leilão
+            // o lance vencedor é o primeiro valor superior ao valor destino
+            // no caso é 1250 e não 1400
+
+            // Arranje - cenário
+            var leilao = new Leilao("Bicicleta", valorDestino);
+            leilao.IniciaPregao();
+
+            var fulano = new Interessada("Fulano", leilao);
+            var maria = new Interessada("Maria", leilao);
+
+            for (var i = 0; i < ofertas.Length; i++)
+            {
+                if (i % 2 == 0)
+                {
+                    leilao.RecebeLance(fulano, ofertas[i]);
+                }
+                else
+                {
+                    leilao.RecebeLance(maria, ofertas[i]);
+                }
+            }
+
+            leilao.TerminaPregao();
+
+            // Act - método sob teste
+            Assert.Equal(valorEsperado, leilao.Ganhador.Valor);
+
+        }
+
         [Theory]
         [InlineData(800, new double[] { 800, 900, 1000 })]
         [InlineData(800, new double[] { 800, 1000, 900 })]
