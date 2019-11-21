@@ -28,8 +28,10 @@ namespace Shindi.LeilaoOnline.Tests
         [InlineData(1, new double[] { 100, 200, 635, 985 })]
         public void NaoPermiteNovosLancesDadoLeilaoFinalizado(int qtdEsperada, double[] ofertas)
         {
+            MaiorValor modalidade = new MaiorValor();
+
             // Arranje - cenário
-            var leilao = new Leilao("Bicicleta");
+            var leilao = new Leilao("Bicicleta", modalidade);
             leilao.IniciaPregao();
 
             var interassado1 = new Interessada("Leandro", leilao);

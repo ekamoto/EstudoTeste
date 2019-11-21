@@ -20,8 +20,10 @@ namespace Shindi.LeilaoOnline.Tests
             // o lance vencedor é o primeiro valor superior ao valor destino
             // no caso é 1250 e não 1400
 
+            OfertaSuperiorMaisProxima modalidade = new OfertaSuperiorMaisProxima(1200);
+
             // Arranje - cenário
-            var leilao = new Leilao("Bicicleta", valorDestino);
+            var leilao = new Leilao("Bicicleta", modalidade);
             leilao.IniciaPregao();
 
             var fulano = new Interessada("Fulano", leilao);
@@ -57,7 +59,9 @@ namespace Shindi.LeilaoOnline.Tests
             // Arranje - cenário de entrada
             // Dado(give) leilão com 2 clientes sendo que fulado deu dois Lances, um de 800 e outro de 1000
             // e maria deu um lance 900
-            var leilao = new Leilao("Jogos");
+
+            MaiorValor modalidade = new MaiorValor();
+            var leilao = new Leilao("Jogos", modalidade);
             var fulano = new Interessada("Fulano", leilao);
             var maria = new Interessada("Maria", leilao);
 
@@ -83,8 +87,8 @@ namespace Shindi.LeilaoOnline.Tests
         [Fact]
         public void VerificaClienteGanhador()
         {
-
-            var leilao = new Leilao("Gado");
+            MaiorValor modalidade = new MaiorValor();
+            var leilao = new Leilao("Gado", modalidade);
             var interassado1 = new Interessada("Leandro", leilao);
             var interassado2 = new Interessada("Priscila", leilao);
             var interassado3 = new Interessada("Marina", leilao);
@@ -104,7 +108,8 @@ namespace Shindi.LeilaoOnline.Tests
         [Fact]
         public void RetornaZeroDadoLeilaoSemLances()
         {
-            var leilao = new Leilao("Bicicleta");
+            MaiorValor modalidade = new MaiorValor();
+            var leilao = new Leilao("Bicicleta", modalidade);
             var interassado1 = new Interessada("Leandro", leilao);
             var interassado2 = new Interessada("Priscila", leilao);
             var interassado3 = new Interessada("Marina", leilao);

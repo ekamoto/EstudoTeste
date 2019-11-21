@@ -16,11 +16,11 @@ namespace Shindi.LeilaoOnline.Core
         public IEstado Estado { get; set; }
         private Interessada _ultimoLanceIntessado { get; set; }
 
-        private double _valorDestino { get; }
+        private IModalidadeAvaliacao _modalidadeAvaliacao { get; }
 
-        public Leilao(string peca, double valorDestino = 0)
+        public Leilao(string peca, IModalidadeAvaliacao modalidade = null)
         {
-            _valorDestino = valorDestino;
+            _modalidadeAvaliacao = modalidade;
             Estado = new EstadoEmEspera();
             Peca = peca;
             _lances = new List<Lance>();
@@ -50,25 +50,9 @@ namespace Shindi.LeilaoOnline.Core
             {
                 throw new InvalidOperationException("Não é possível finalizar um pregão que não foi iniciado");
             }
-            if (_valorDestino > 0)
-            {
-
-                // Modalidade oferta superior mais próxima
-                Ganhador = Lances
-                    .Where(l => l.Valor > _valorDestino)
-                    .DefaultIfEmpty(new Lance(null, 0))
-                    .OrderBy(l => l.Valor)
-                    .FirstOrDefault();
-            }
-            else {
-
-                // Modalidade maior lance
-                Ganhador = Lances
-                .DefaultIfEmpty(new Lance(null, 0))
-                .OrderBy(t => t.Valor).LastOrDefault();
-            }
             
-
+            Ganhador = _modalidadeAvaliacao.RetornaGanhador(_lances);
+            
             Estado.FinalizarLeilao(this);
         }
     }
